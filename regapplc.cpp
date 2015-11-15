@@ -11,6 +11,9 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#include "../MyUtility/CommandLineParser.h"
+using namespace Ambiesoft;
+
 /////////////////////////////////////////////////////////////////////////////
 // CRegapplcApp
 
@@ -41,10 +44,16 @@ CRegapplcApp theApp;
 
 BOOL CRegapplcApp::InitInstance()
 {
-	// Standard initialization
-	// If you are not using these features and wish to reduce the size
-	//  of your final executable, you should remove from the following
-	//  the specific initialization routines you do not need.
+	Ambiesoft::CCommandLineInfo clinfo[] = {
+		{1, _T("aaa"), Ambiesoft::ArgType_Int, 0},
+		{2, _T("affeaa"), Ambiesoft::ArgType_Int, 0},
+	};
+
+	Ambiesoft::CCommandLineParser parser;
+	if(!parser.construct(clinfo, sizeof(clinfo)/sizeof(clinfo[0])))
+	{
+		return FALSE;
+	}
 
 	CRegapplcDlg dlg;
 	m_pMainWnd = &dlg;

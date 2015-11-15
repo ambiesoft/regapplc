@@ -6,10 +6,16 @@
 --------------------Configuration: regapplc - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating command line "rc.exe /l 0x409 /fo"Debug/regapplc.res" /d "_DEBUG" /d "_AFXDLL" "C:\T\regapplc\regapplc.rc"" 
+Creating temporary file "C:\DOCUME~1\KeCent\LOCALS~1\Temp\RSP1E10.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/regapplc.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\cygwin\home\KeCent\dev\regapplc\regapplc.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\KeCent\LOCALS~1\Temp\RSP1E10.tmp" 
 Creating command line "link.exe /nologo /subsystem:windows /incremental:yes /pdb:"Debug/regapplc.pdb" /debug /machine:I386 /out:"Debug/regapplc.exe" /pdbtype:sept  .\Debug\regapplc.obj .\Debug\regapplcDlg.obj .\Debug\StdAfx.obj .\Debug\regapplc.res "
 <h3>Output Window</h3>
-Compiling resources...
+Compiling...
+regapplc.cpp
 Linking...
 
 
