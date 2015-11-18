@@ -18,7 +18,8 @@ CRegapplcDlg::CRegapplcDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CRegapplcDlg::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CRegapplcDlg)
-		// NOTE: the ClassWizard will add member initialization here
+	m_strCaption = _T("");
+	m_strInput = _T("");
 	//}}AFX_DATA_INIT
 	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -28,7 +29,8 @@ void CRegapplcDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CRegapplcDlg)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
+	DDX_Text(pDX, IDC_STATIC_CAPTION, m_strCaption);
+	DDX_Text(pDX, IDC_EDIT_INPUT, m_strInput);
 	//}}AFX_DATA_MAP
 }
 
@@ -52,7 +54,8 @@ BOOL CRegapplcDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 	
 	// TODO: Add extra initialization here
-	
+	SetWindowText(m_strTitle);
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 

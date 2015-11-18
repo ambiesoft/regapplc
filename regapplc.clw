@@ -7,7 +7,7 @@ LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "regapplc.h"
 
-ClassCount=4
+ClassCount=2
 Class1=CRegapplcApp
 Class2=CRegapplcDlg
 
@@ -26,6 +26,9 @@ Type=0
 HeaderFile=regapplcDlg.h
 ImplementationFile=regapplcDlg.cpp
 Filter=D
+BaseClass=CDialog
+VirtualFilter=dWC
+LastObject=IDC_STATIC_CAPTION
 
 
 
@@ -33,8 +36,8 @@ Filter=D
 Type=1
 Class=CRegapplcDlg
 ControlCount=4
-Control1=IDOK,button,1342242817
-Control2=IDCANCEL,button,1342242816
-Control3=IDC_STATIC,static,1342308352
-Control4=IDC_EDIT_INPUT,edit,1350631552
+Control1=IDC_STATIC_CAPTION,static,1342308352
+Control2=IDC_EDIT_INPUT,edit,1350631552
+Control3=IDOK,button,1342242817
+Control4=IDCANCEL,button,1342242816
 

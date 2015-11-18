@@ -20,7 +20,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CRegapplcDlg)
 	enum { IDD = IDD_REGAPPLC_DIALOG };
-		// NOTE: the ClassWizard will add data members here
+	CString	m_strCaption;
+	CString	m_strInput;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
@@ -40,6 +41,10 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+public:
+	CString m_strTitle;
+	CString m_strKey;
 };
 
 //{{AFX_INSERT_LOCATION}}
