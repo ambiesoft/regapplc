@@ -138,12 +138,11 @@ BOOL CRegapplcApp::InitInstance()
 	dlg.m_strInput = input.c_str();
 	dlg.m_strKey = key.c_str();
 
-	m_pMainWnd = &dlg;
+	// m_pMainWnd = &dlg;
 	int nResponse = dlg.DoModal();
 	if (nResponse != IDOK)
 		return FALSE;
 
-	m_pMainWnd = NULL;
 	if(dlg.m_strInput != key.c_str())
 	{
 		MessageBox(NULL, L"Wrong key", title.c_str(), MB_ICONEXCLAMATION);
