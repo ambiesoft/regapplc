@@ -48,6 +48,8 @@ void CRegapplcApp::DoReg(LPCTSTR pFolder, LPCTSTR pIni, LPCTSTR pSec, LPCTSTR pA
 
 }
 
+
+// -title "Register CBRevamper" -caption "Enter Key" -key DERTAON -inifile "C:\Linkout\CBRevamper\regcbr.ini" -section Reg -appname Reg
 BOOL CRegapplcApp::InitInstance()
 {
 	Ambiesoft::CAvailableCommandLineInfo clinfo[] = {
@@ -69,7 +71,9 @@ BOOL CRegapplcApp::InitInstance()
 	tstring caption = _T("&Enter:");
 	tstring input = _T("");
 	tstring key = _T("");
-
+	tstring inifile;
+	tstring section;
+	tstring appname;
 	while(CInputCommandLineInfo* pInput = parser.GetNext())
 	{
 		switch(pInput->nID_)
@@ -84,6 +88,7 @@ BOOL CRegapplcApp::InitInstance()
 			{
 				caption = pInput->value_;
 			}
+			break;
 
 			case 3:
 			{
@@ -97,9 +102,33 @@ BOOL CRegapplcApp::InitInstance()
 			}
 			break;
 
+			case 6:
+			{
+				inifile = pInput->value_;
+			}
+			break;
+
+			case 7:
+			{
+				section = pInput->value_;
+			}
+			break;
+
+			case 8:
+			{
+				appname = pInput->value_;
+			}
+			break;
+
 			default:
-				ASSERT(FALSE);
-				break;
+			{
+				CString message;
+				message += L"Unknown Option: ";
+				message += pInput->option_.c_str();
+				AfxMessageBox(message);
+				return FALSE;
+			}
+			break;
 		}
 	}
 
@@ -111,18 +140,16 @@ BOOL CRegapplcApp::InitInstance()
 
 	m_pMainWnd = &dlg;
 	int nResponse = dlg.DoModal();
-	if (nResponse == IDOK)
+	if (nResponse != IDOK)
+		return FALSE;
+
+	m_pMainWnd = NULL;
+	if(dlg.m_strInput != key.c_str())
 	{
-		// TODO: Place code here to handle when the dialog is
-		//  dismissed with OK
-	}
-	else if (nResponse == IDCANCEL)
-	{
-		// TODO: Place code here to handle when the dialog is
-		//  dismissed with Cancel
+		MessageBox(NULL, L"Wrong key", title.c_str(), MB_ICONEXCLAMATION);
+		return FALSE;
 	}
 
-	// Since the dialog has been closed, return FALSE so that we exit the
-	//  application, rather than start the application's message pump.
+
 	return FALSE;
 }
