@@ -94,3 +94,14 @@ HCURSOR CRegapplcDlg::OnQueryDragIcon()
 {
 	return (HCURSOR) m_hIcon;
 }
+
+void CRegapplcDlg::OnOK() 
+{
+	UpdateData();
+	if(m_strInput != m_strKey)
+	{
+		// MessageBox(NULL, L"Wrong key", title.c_str(), MB_ICONEXCLAMATION);
+		AfxMessageBox(L"Wrong key");
+	}	
+	CDialog::OnOK();
+}
