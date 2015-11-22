@@ -98,7 +98,7 @@ HCURSOR CRegapplcDlg::OnQueryDragIcon()
 void CRegapplcDlg::OnOK() 
 {
 	UpdateData();
-	if(m_strInput != m_strKey)
+	if(m_strInput != m_strLicKey)
 	{
 		// MessageBox(NULL, L"Wrong key", title.c_str(), MB_ICONEXCLAMATION);
 		AfxMessageBox(L"Wrong key");

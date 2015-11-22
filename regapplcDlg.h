@@ -45,7 +45,7 @@ protected:
 
 public:
 	CString m_strTitle;
-	CString m_strKey;
+	CString m_strLicKey;
 };
 
 //{{AFX_INSERT_LOCATION}}

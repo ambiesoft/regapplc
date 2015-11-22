@@ -19,7 +19,16 @@
 #include <afxcmn.h>			// MFC support for Windows Common Controls
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
+#include <algorithm>
 
+#include "../MyUtility/CommandLineParser.h"
+#include "../MyUtility/GetLastErrorString.h"
+#include "../MyUtility/stdwin32/stdwin32.h"
+using namespace stdwin32;
+
+#define INVALID_FILE_ATTRIBUTE 0xFFFFFFFF
+
+#define I18N(s) (s)
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 

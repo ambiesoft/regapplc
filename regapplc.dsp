@@ -92,6 +92,11 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=..\MyUtility\GetLastErrorString.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
 SOURCE=.\regapplc.cpp
 # End Source File
 # Begin Source File
@@ -107,6 +112,11 @@ SOURCE=.\regapplcDlg.cpp
 SOURCE=.\StdAfx.cpp
 # ADD CPP /Yc"stdafx.h"
 # End Source File
+# Begin Source File
+
+SOURCE=..\MyUtility\stdwin32\stdwin32.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
@@ -114,6 +124,10 @@ SOURCE=.\StdAfx.cpp
 # Begin Source File
 
 SOURCE=..\MyUtility\CommandLineParser.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\MyUtility\GetLastErrorString.h
 # End Source File
 # Begin Source File
 
@@ -130,6 +144,10 @@ SOURCE=.\Resource.h
 # Begin Source File
 
 SOURCE=.\StdAfx.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\MyUtility\stdwin32\stdwin32.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"
