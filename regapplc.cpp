@@ -104,6 +104,20 @@ BOOL IsUserAdmin(HANDLE hToken=NULL)
     return bSuccess;
 }
 
+bool shellrunas(LPCTSTR pCommand, LPCTSTR pCurDir)
+{
+//	wstring app,param;
+//	getappandparam(pCommand,app,param);
+	SHELLEXECUTEINFO sei = {0};
+
+	sei.cbSize = sizeof(sei);
+	sei.lpVerb = L"runas";
+	sei.lpFile = pCommand;
+	sei.nShow = SW_SHOW;
+	sei.lpDirectory = pCurDir;
+	return !!ShellExecuteEx(&sei);
+}
+
 void ShowErrorAndExit(LPCTSTR pMessage)
 {
 	wstring message(pMessage);
@@ -315,13 +329,8 @@ BOOL CRegapplcApp::InitInstance()
 
 		wstring command=GetCommandLine();
 		command += L" -asadmin";
-		ShellExecute(???
-			NULL,
-			L"runas",
-			NULL,
-			command.c_str(),
-			origcurdir.c_str(),
-			SW_SHOW);
+
+		shellrunas(command.c_str(), origcurdir.c_str());
 		return FALSE;
 	}
 	TCHAR szRT[16];
@@ -337,13 +346,7 @@ BOOL CRegapplcApp::InitInstance()
 
 		wstring command=GetCommandLine();
 		command += L" -asadmin";
-		ShellExecute(
-			NULL,
-			L"RunAs",
-			command.c_str(),
-			NULL,
-			origcurdir.c_str(),
-			SW_SHOW);
+		shellrunas(command.c_str(), origcurdir.c_str());
 		return FALSE;
 	}
 	CRegapplcDlg dlg;
