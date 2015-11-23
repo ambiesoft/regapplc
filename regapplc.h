@@ -40,10 +40,9 @@ public:
 	DECLARE_MESSAGE_MAP()
 
 public:
-	void DoReg(LPCTSTR pFolder, LPCTSTR pIni, LPCTSTR pSec, LPCTSTR pApp);
 };
 
-
+extern CRegapplcApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 
 //{{AFX_INSERT_LOCATION}}

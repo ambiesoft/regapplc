@@ -43,10 +43,7 @@ CRegapplcApp theApp;
 
 /////////////////////////////////////////////////////////////////////////////
 // CRegapplcApp initialization
-void CRegapplcApp::DoReg(LPCTSTR pFolder, LPCTSTR pIni, LPCTSTR pSec, LPCTSTR pApp)
-{
 
-}
 
 bool isnotalnum(TCHAR t)
 {
@@ -104,15 +101,73 @@ BOOL IsUserAdmin(HANDLE hToken=NULL)
     return bSuccess;
 }
 
+bool isSepEnd(LPCTSTR p, TCHAR sep)
+{
+	if(*p==0)
+		return true;
+
+	if(*p==sep)
+		return true;
+
+	if(sep==_T(' '))
+		return !!_istspace(*p);
+
+	return false;
+}
+
+void getappandparam(LPCTSTR pCommand, wstring&app, wstring&param)
+{
+	if(!pCommand)
+		return;
+
+	while(_istspace(*pCommand))
+		++pCommand;
+
+	TCHAR sep = *pCommand;
+	LPCTSTR pStart=NULL;
+	if(sep==_T('"') || sep==_T('\''))
+	{
+		app += sep;
+		pStart = pCommand+1;
+	}
+	else
+	{
+		sep=_T(' ');
+		pStart = pCommand;
+	}
+
+	for( ;  ; ++pStart)
+	{
+		app += *pStart;
+		if(isSepEnd(pStart,sep))
+		{
+			++pStart;
+			break;
+		}
+	}
+	
+	while(_istspace(*pStart))
+		++pStart;
+	param = pStart;
+	return;
+}
+
 bool shellrunas(LPCTSTR pCommand, LPCTSTR pCurDir)
 {
-//	wstring app,param;
-//	getappandparam(pCommand,app,param);
+	wstring app,param;
+	getappandparam(pCommand,app,param);
+
+	TRACE(app.c_str());
+	TRACE(_T("\r\n"));
+	TRACE(param.c_str());
+	TRACE(_T("\r\n"));
+
 	SHELLEXECUTEINFO sei = {0};
 
 	sei.cbSize = sizeof(sei);
 	sei.lpVerb = L"runas";
-	sei.lpFile = pCommand;
+	sei.lpFile = app.c_str();
+	sei.lpParameters = param.c_str();
 	sei.nShow = SW_SHOW;
 	sei.lpDirectory = pCurDir;
 	return !!ShellExecuteEx(&sei);
@@ -228,6 +283,7 @@ BOOL CRegapplcApp::InitInstance()
 				asadmin=true;
 			}
 			break;
+
 			default:
 			{
 				CString message;
@@ -286,6 +342,11 @@ BOOL CRegapplcApp::InitInstance()
 	if(!stdIsFullPath(inifile.c_str()))
 	{
 		ShowErrorAndExit(I18N(L"-inifile must be full path"));
+	}
+
+	if(lickey.empty())
+	{
+		ShowErrorAndExit(I18N(L"-lickey must be specified"));
 	}
 
 	if(appname.empty())
@@ -353,7 +414,7 @@ BOOL CRegapplcApp::InitInstance()
 	dlg.m_strTitle = title.c_str();
 	dlg.m_strCaption = caption.c_str();
 	dlg.m_strInput = input.c_str();
-	dlg.m_strLicKey = lickey.c_str();
+
 
 	m_pMainWnd = &dlg;
 
@@ -361,7 +422,25 @@ BOOL CRegapplcApp::InitInstance()
 	if (nResponse != IDOK)
 		return FALSE;
 
+	
+	while(PumpMessage())
+		;
 
+	if(dlg.m_strInput != lickey.c_str())
+	{
+		AfxMessageBox(I18N(L"Wrong key"));
+	}
+	else
+	{
+		if(!WritePrivateProfileString(appname.c_str(),keyname.c_str(),_T("1"), inifile.c_str()))
+		{
+			AfxMessageBox(I18N(L"Registration Failed"));
+		}
+		else
+		{
+			AfxMessageBox(I18N(L"Registration Succeeded"), MB_ICONINFORMATION);
+		}
+	}
 
 
 	return FALSE;

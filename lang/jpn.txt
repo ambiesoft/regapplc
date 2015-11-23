@@ -1,0 +1,2 @@
+"Wrong key"="キーが違います"
+"Registration Succeeded"="登録が成功しました"

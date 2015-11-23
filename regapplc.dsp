@@ -54,6 +54,10 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
 # ADD LINK32 /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /machine:I386 /out:"C:\Linkout\CommonExe\regapplc.exe"
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Cmds=mkdir   C:\Linkout\CommonExe\lang  	copy   lang\jpn.txt   C:\Linkout\CommonExe\lang\ 
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "regapplc - Win32 Debug"
 
@@ -79,7 +83,11 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /pdbtype:sept
+# ADD LINK32 /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /out:"C:\Linkout\CommonExe\regapplcd.exe" /pdbtype:sept
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Cmds=mkdir   C:\Linkout\CommonExe\lang  	copy   lang\jpn.txt   C:\Linkout\CommonExe\lang\ 
+# End Special Build Tool
 
 !ENDIF 
 
@@ -94,6 +102,11 @@ LINK32=link.exe
 
 SOURCE=..\MyUtility\GetLastErrorString.cpp
 # ADD CPP /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\MyUtility\I18N.cpp
+# SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
 
@@ -128,6 +141,10 @@ SOURCE=..\MyUtility\CommandLineParser.h
 # Begin Source File
 
 SOURCE=..\MyUtility\GetLastErrorString.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\MyUtility\I18N.h
 # End Source File
 # Begin Source File
 

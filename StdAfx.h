@@ -28,7 +28,7 @@ using namespace stdwin32;
 
 #define INVALID_FILE_ATTRIBUTE 0xFFFFFFFF
 
-#define I18N(s) (s)
+#include "../MyUtility/I18N.h"
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
