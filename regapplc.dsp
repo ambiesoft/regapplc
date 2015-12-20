@@ -1,24 +1,24 @@
 # Microsoft Developer Studio Project File - Name="regapplc" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
-# ** 編集しないでください **
+# ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Application" 0x0101
 
 CFG=regapplc - Win32 Debug
-!MESSAGE これは有効なﾒｲｸﾌｧｲﾙではありません。 このﾌﾟﾛｼﾞｪｸﾄをﾋﾞﾙﾄﾞするためには NMAKE を使用してください。
-!MESSAGE [ﾒｲｸﾌｧｲﾙのｴｸｽﾎﾟｰﾄ] ｺﾏﾝﾄﾞを使用して実行してください
+!MESSAGE This is not a valid makefile. To build this project using NMAKE,
+!MESSAGE use the Export Makefile command and run
 !MESSAGE 
 !MESSAGE NMAKE /f "regapplc.mak".
 !MESSAGE 
-!MESSAGE NMAKE の実行時に構成を指定できます
-!MESSAGE ｺﾏﾝﾄﾞ ﾗｲﾝ上でﾏｸﾛの設定を定義します。例:
+!MESSAGE You can specify a configuration when running NMAKE
+!MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
 !MESSAGE NMAKE /f "regapplc.mak" CFG="regapplc - Win32 Debug"
 !MESSAGE 
-!MESSAGE 選択可能なﾋﾞﾙﾄﾞ ﾓｰﾄﾞ:
+!MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "regapplc - Win32 Release" ("Win32 (x86) Application" 用)
-!MESSAGE "regapplc - Win32 Debug" ("Win32 (x86) Application" 用)
+!MESSAGE "regapplc - Win32 Release" (based on "Win32 (x86) Application")
+!MESSAGE "regapplc - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE 
 
 # Begin Project
@@ -56,7 +56,7 @@ LINK32=link.exe
 # ADD LINK32 /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /machine:I386 /out:"C:\Linkout\CommonExe\regapplc.exe"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=mkdir   C:\Linkout\CommonExe\lang  	copy   lang\jpn.txt   C:\Linkout\CommonExe\lang\ 
+PostBuild_Cmds=mkdir    C:\Linkout\CommonExe\lang   	copy    lang\jpn.txt    C:\Linkout\CommonExe\lang\ 
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "regapplc - Win32 Debug"
@@ -86,7 +86,7 @@ LINK32=link.exe
 # ADD LINK32 /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /out:"C:\Linkout\CommonExe\regapplcd.exe" /pdbtype:sept
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=mkdir   C:\Linkout\CommonExe\lang  	copy   lang\jpn.txt   C:\Linkout\CommonExe\lang\ 
+PostBuild_Cmds=mkdir    C:\Linkout\CommonExe\lang   	copy    lang\jpn.txt    C:\Linkout\CommonExe\lang\ 
 # End Special Build Tool
 
 !ENDIF 
