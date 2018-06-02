@@ -10,6 +10,10 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#include "target.h"
+
+#include <vld.h>
+
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
 
 #include <afxwin.h>         // MFC core and standard components
@@ -21,14 +25,14 @@
 
 #include <algorithm>
 
-#include "../MyUtility/CommandLineParser.h"
-#include "../MyUtility/GetLastErrorString.h"
-#include "../MyUtility/stdwin32/stdwin32.h"
+#include "../lsMisc/CommandLineParser.h"
+#include "../lsMisc/GetLastErrorString.h"
+#include "../lsMisc/stdwin32/stdwin32.h"
 using namespace stdwin32;
 
 #define INVALID_FILE_ATTRIBUTE 0xFFFFFFFF
 
-#include "../MyUtility/I18N.h"
+#include "../lsMisc/I18N.h"
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 

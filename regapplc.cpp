@@ -179,7 +179,7 @@ void ShowErrorAndExit(LPCTSTR pMessage)
 	message += L"\r\n\r\n";
 
 	
-	message += L"ex: regapplc -title \"Register CBRevamper\" -caption \"Enter Key\" -key DERTAON -inifile \"regcbr.ini\" -section Reg -appname Reg";
+	message += L"ex: regapplc -title \"Register CBRevamper\" -caption \"Enter Key\" -key DERTAON -inifile \"C:\\dir\\regcbr.ini\" -section Reg -appname Reg";
 	AfxMessageBox(message.c_str());
 	exit(1);
 }
@@ -189,155 +189,58 @@ BOOL CRegapplcApp::InitInstance()
 {
 	wstring origcurdir = stdGetCurrentDirectory();
 
-	Ambiesoft::CAvailableCommandLineInfo clinfo[] = {
-		{1, _T("-title"),				1},
-		{2, _T("-caption"),				1},
-		{3, _T("-input"),				1},
-		{4, _T("-lickey"),				1},
-//		{5, _T("-foldertype"),			1},
-		{6, _T("-inifile"),				1},
-		{7, _T("-keyname"),				1},
-		{8, _T("-appname"),				1},
-//		{9, _T("-folder"),				1},
-		{10, _T("-asadmin"),				0},
-	};
+//	Ambiesoft::CAvailableCommandLineInfo clinfo[] = {
+//		{1, _T("-title"),				1},
+//		{2, _T("-caption"),				1},
+//		{3, _T("-input"),				1},
+//		{4, _T("-lickey"),				1},
+////		{5, _T("-foldertype"),			1},
+//		{6, _T("-inifile"),				1},
+//		{7, _T("-keyname"),				1},
+//		{8, _T("-appname"),				1},
+////		{9, _T("-folder"),				1},
+//		{10, _T("-asadmin"),				0},
+//	};
 
-	Ambiesoft::CCommandLineParser parser(__argc, __targv,
-		clinfo, sizeof(clinfo)/sizeof(clinfo[0]));
+	Ambiesoft::CCommandLineParser parser;
 
 	tstring title = _T("regapplc");
+	parser.AddOption(L"-title", 1, &title);
+
 	tstring caption = _T("&Enter:");
+	parser.AddOption(L"-caption", 1, &caption);
+
 	tstring input = _T("");
+	parser.AddOption(L"-input", 1, &input);
+
 	tstring lickey = _T("");
-//	int foldertype=0;
+	parser.AddOption(L"-lickey", 1, &lickey);
+
+
 	tstring inifile;
+	parser.AddOption(L"-inifile", 1, &inifile);
+
 	tstring keyname;
+	parser.AddOption(L"-keyname", 1, &keyname);
+
 	tstring appname;
+	parser.AddOption(L"-appname", 1, &appname);
+
 //	tstring folder;
 	bool asadmin=false;
-	while(CInputCommandLineInfo* pInput = parser.GetNext())
+	parser.AddOption(L"-asadmin", 0, &asadmin);
+
+	parser.Parse();
+
+	if (parser.hadUnknownOption())
 	{
-		switch(pInput->nID_)
-		{
-			case 1:
-			{
-				title = pInput->value_;
-			}
-			break;
-
-			case 2:
-			{
-				caption = pInput->value_;
-			}
-			break;
-
-			case 3:
-			{
-				input = pInput->value_;
-			}
-			break;
-
-			case 4:
-			{
-				lickey = pInput->value_;
-			}
-			break;
-
-//			case 5:
-//			{
-//				foldertype = _ttoi(pInput->value_.c_str());
-//				if(foldertype != 0 && foldertype != 1 && foldertype != 2)
-//				{
-//					wstring message = I18N(L"-foldertype must be 0 or 1");
-//					ShowErrorAndExit(message.c_str());
-//				}
-//			}
-//			break;
-
-			case 6:
-			{
-				inifile = pInput->value_;
-			}
-			break;
-
-			case 7:
-			{
-				keyname = pInput->value_;
-			}
-			break;
-
-			case 8:
-			{
-				appname = pInput->value_;
-			}
-			break;
-
-//			case 9:
-//			{
-//				folder = pInput->value_;
-//			}
-//			break;
-
-			case 10:
-			{
-				asadmin=true;
-			}
-			break;
-
-			default:
-			{
-				CString message;
-				message += L"Unknown Option: ";
-				message += pInput->option_.c_str();
-				AfxMessageBox(message);
-				return FALSE;
-			}
-			break;
-		}
+		CString message;
+		message += L"Unknown Option: ";
+		message += parser.getUnknowOptionStrings().c_str();
+		AfxMessageBox(message);
+		return FALSE;
 	}
 
-
-/***
-	if(!folder.empty())
-	{
-		if(foldertype != 2)
-		{
-			LPCTSTR pMessage = I18N(L"-foldertype should be 2 to assing -folder");
-			ShowErrorAndExit(pMessage);
-		}
-		
-		DWORD dwAttr = GetFileAttributes(folder.c_str());
-		if(dwAttr == INVALID_FILE_ATTRIBUTE ||
-			!(dwAttr & FILE_ATTRIBUTE_DIRECTORY))
-		{
-			TCHAR szT[MAX_PATH + 128];
-			wsprintf(szT, I18N(L"%s is not a directory"), folder.c_str());
-			ShowErrorAndExit(szT);
-		}
-	}
-	
-	if(foldertype==0)
-	{
-		wstring thisdir = stdGetModuleFileNameW();
-		thisdir = stdGetParentDirectory(thisdir.c_str());
-		if(!SetCurrentDirectory(thisdir.c_str()))
-		{
-			wstring message = GetLastErrorStringW(GetLastError());
-			ShowErrorAndExit(message.c_str());
-		}
-	}
-	else if(foldertype==1)
-	{
-	}
-	else if(foldertype==2)
-	{
-		if(!SetCurrentDirectory(folder.c_str()))
-		{
-			wstring message = GetLastErrorStringW(GetLastError());
-			ShowErrorAndExit(message.c_str());
-		}
-	}
-***/
 
 	if(!stdIsFullPath(inifile.c_str()))
 	{
