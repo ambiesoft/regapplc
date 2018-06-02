@@ -64,8 +64,8 @@
       <AdditionalIncludeDirectories>.;../lsMisc/stlsoft/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <PostBuildEvent>
-      <Command>mkdir    C:\Linkout\CommonExe\lang   
-copy    lang\jpn.txt    C:\Linkout\CommonExe\lang\</Command>
+      <Command>mkdir C:\Linkout\CommonExe\lang   
+copy lang\jpn.txt    C:\Linkout\CommonExe\lang\</Command>
     </PostBuildEvent>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -103,8 +103,8 @@ copy    lang\jpn.txt    C:\Linkout\CommonExe\lang\</Command>
       <AdditionalIncludeDirectories>.;../lsMisc/stlsoft/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <PostBuildEvent>
-      <Command>mkdir    C:\Linkout\CommonExe\lang   
-copy    lang\jpn.txt    C:\Linkout\CommonExe\lang\</Command>
+      <Command>mkdir C:\Linkout\CommonExe\lang   
+copy lang\jpn.txt    C:\Linkout\CommonExe\lang\</Command>
     </PostBuildEvent>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -192,7 +192,7 @@ copy    lang\jpn.txt    C:\Linkout\CommonExe\lang\</Command>
     <Image Include="res\regapplc.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <Text Include="lang\jpn.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

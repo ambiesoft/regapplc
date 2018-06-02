@@ -13,6 +13,9 @@
       <UniqueIdentifier>{5a49d2cd-a9ae-4b95-8ace-64f0e06e1884}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
+    <Filter Include="dist">
+      <UniqueIdentifier>{1ca50d45-bff8-4dba-a6de-2f0233568baa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="regapplc.cpp">
@@ -89,14 +92,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <CustomBuild Include="res\default1.bin">
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="res\regapplc.rc2">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="lang\jpn.txt">
+      <Filter>dist</Filter>
+    </Text>
   </ItemGroup>
 </Project>
